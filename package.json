@@ -1,0 +1,35 @@
+{
+  "name": "performer",
+  "description": "A fast form generation library for node and the browser with no external dependencies.",
+  "version": "0.0.1",
+  "author": "Tyler Kellen",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tkellen/performer.git"
+  },
+  "homepage": "http://github.com/tkellen/performer",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/tkellen/performer/blob/master/LICENSE"
+    }
+  ],
+  "main": "lib/performer",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "keywords": [
+    "forms"
+  ],
+  "dependencies": {
+
+  },
+  "scripts": {
+    "test": "phantomjs test/runner-phantom.js http://localhost:8000/test/runner.html"
+  },
+  "devDependencies": {
+    "system": "*",
+    "requirejs": "*",
+    "servedir": "*"
+  }
+}

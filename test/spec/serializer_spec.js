@@ -1,29 +1,28 @@
 define(['performer'],function(Performer) {
 
+
   describe('Performer.Serializer', function() {
 
     it('should be defined', function() {
       expect(Performer.Serializer).toBeDefined();
     });
 
-    describe('Standard', function() {
+    describe('attr_html', function() {
 
-      it('should convert Tag instances', function() {
-
-        var form = new Performer.Form();
-        var tag = new Performer.Tag(form,'input',{className:"test",type:'text',what:null});
-
+      var form,serialize;
+      beforeEach(function() {
+        form = new Performer.Form();
+        serialize = new Performer.Serializer.standard();
       });
 
-      it('should convert arrays of tags', function() {
+      it('should convert attributes object of a tag into html tag key-value pairs', function() {
+        var input = new Performer.Tag(form,'input',{className:"test",type:'text'});
+        expect(serialize.attr_html(input)).toEqual('class="test" type="text"');
+      });
 
-        var form = new Performer.Form();
-        var tag1 = new Performer.Tag(form,'input',{className:"test",type:'text',what:null});
-        var tag2 = new Performer.Tag(form,'textarea',{className:"notes"});
-        var serialize = new Performer.Serializer.standard();
-
-        console.log(serialize.invoke([tag1,tag2]));
-
+      it('should ignore empty attributes', function() {
+        var input = new Performer.Tag(form,'input',{attr1:[],attr2:'',attr3:null});
+        expect(serialize.attr_html(input)).toEqual('');
       });
 
     });
@@ -31,3 +30,33 @@ define(['performer'],function(Performer) {
   });
 
 });
+
+  /*
+  /*
+    describe('Standard', function() {
+
+      var serializer;
+      beforeEach(function() {
+        serialize = new Performer.Serializer.standard();
+      });
+
+      it('should convert Tag ', function() {
+
+
+      });
+
+      it('should convert arrays of tags', function() {
+
+        var form = new Performer.Form();
+
+
+
+      });
+
+    });
+
+  });
+      tag1 = new Performer.Tag(form,'input',{className:"test",type:'text'});
+      tag2 = new Performer.Tag(form,'textarea',{className:"notes"});
+      input = new Performer.Tag(form,'input',);
+      */

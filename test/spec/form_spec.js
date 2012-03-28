@@ -51,15 +51,15 @@ define(['performer'], function(Performer) {
     });
 
     it('should be able to build a tag from a schema',function(){
-      var tag = form.build('root');
+      var tag = form.build('root',false);
 
-      expect(tag).toEqual('<fieldset><input type="text"/></fieldset>');
+      expect(tag).toEqual('<fieldset><input type="text" id="name"/></fieldset>');
     });
-/*
+
     it('should be able to build an entire form from a schema',function(){
-      var output = form.build();
-      expect(output).toEqual('<fieldset><input type="text"/></fieldset><fieldset><input type="password"/></fieldset>');
+      var output = form.build('root',true);
+      expect(output).toEqual('<fieldset><input type="text" id="name"/><input type="text" id="username"/><input type="password" id="password"/><input type="text" id="first"/><input type="text" id="last"/><input type="text" id="age"/><input type="text" id="birthdate"/></fieldset>');
     });
-*/
+
   });
 });

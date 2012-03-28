@@ -22,7 +22,7 @@ define(['performer'], function(Performer) {
         }
       };
       var input = new Performer.Tag('test', data);
-      expect(pipeline.tag(input)).toEqual('<input type="text" class="email"/>');
+      expect(pipeline.tag(input)).toEqual('<input type="text" class="email" id="test"/>');
     });
 
     it('should be able to transform an Output instance with a pipeline',function() {
@@ -34,7 +34,7 @@ define(['performer'], function(Performer) {
         }
       };
       var input = new Performer.Tag('test',data);
-      expect(pipeline.tag(input)).toEqual('<input type="text" class="email"/>');
+      expect(pipeline.tag(input)).toEqual('<input type="text" class="email" id="test"/>');
     });
 
   });

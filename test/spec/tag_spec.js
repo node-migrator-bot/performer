@@ -14,7 +14,7 @@ define(['performer'],function(Performer) {
         }
       };
       var input = new Performer.Tag('test', data);
-      expect(input.attr_html()).toEqual('type="text" class="email"');
+      expect(input.attr_html()).toEqual('type="text" class="email" id="test"');
     });
 
     it('should ignore empty attributes', function() {
@@ -28,8 +28,8 @@ define(['performer'],function(Performer) {
           attr3: null
         }
       };
-      var input = new Performer.Tag('input', data);
-      expect(input.attr_html()).toEqual('type="text" class="email"');
+      var input = new Performer.Tag('test', data);
+      expect(input.attr_html()).toEqual('type="text" class="email" id="test"');
     });
 
   });

@@ -1,5 +1,4 @@
-define(['performer'],function(Performer) {
-
+define(['performer'], function(Performer) {
   describe('Performer.Pipeline', function() {
 
     var pipeline;
@@ -22,11 +21,11 @@ define(['performer'],function(Performer) {
           className: 'email'
         }
       };
-      var input = new Performer.Tag('test',data);
+      var input = new Performer.Tag('test', data);
       expect(pipeline.tag(input)).toEqual('<input type="text" class="email"/>');
     });
 
-    it('should be able to transform a string instance with a pipeline',function() {
+    it('should be able to transform an Output instance with a pipeline',function() {
       var data = {
         tag: 'input',
         attributes: {

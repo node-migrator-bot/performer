@@ -1,4 +1,4 @@
-define(['performer'],function(Performer) {
+define(['performer'], function(Performer) {
   describe('Performer', function() {
 
     it('should be defined', function() {

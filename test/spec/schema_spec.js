@@ -1,34 +1,35 @@
-define(['performer'],function(Performer) {
+define(['performer'], function(Performer) {
   describe('Performer.Schema', function() {
 
     var schema, data;
     beforeEach(function(){
       data = {
 
-        fields: {
-          name: { format: 'text'},
+        root: {
+          _fields: {
+            name: { format: 'text' },
 
-          account: {
-            fields: {
-              username: { format: 'text' },
-              password: { format: 'password' }
-            }
-          },
+            account: {
+              _fields: {
+                username: { format: 'text' },
+                password: { format: 'password' }
+              }
+            },
 
-          contact: {
-            fields: {
-              first: { format: 'text' },
-              last: { format: 'text' },
+            contact: {
+              _fields: {
+                first: { format: 'text' },
+                last: { format: 'text' },
 
-              details: {
-                fields: {
-                  age: { format: 'number' },
-                  birthdate: { format: 'date' }
+                details: {
+                  _fields: {
+                    age: { format: 'number' },
+                    birthdate: { format: 'date' }
+                  }
                 }
               }
             }
           }
-
         }
       };
       schema = new Performer.Schema(data);
@@ -45,7 +46,7 @@ define(['performer'],function(Performer) {
 
     it('lookup should traverse the schema with dot notation', function() {
       var value = schema.read('contact.details');
-      expect(value).toEqual(data.fields.contact.fields.details);
+      expect(value).toEqual(data.root._fields.contact._fields.details);
     });
 
   });

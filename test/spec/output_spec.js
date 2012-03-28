@@ -1,5 +1,4 @@
-define(['performer'],function(Performer) {
-
+define(['performer'], function(Performer) {
   describe('Performer.Output', function() {
 
     it('should be defined', function() {

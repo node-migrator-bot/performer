@@ -1,5 +1,4 @@
 define(['performer'],function(Performer) {
-
   describe('Performer.Tag', function() {
 
     it('should be defined', function() {
@@ -14,7 +13,7 @@ define(['performer'],function(Performer) {
           className: 'email'
         }
       };
-      var input = new Performer.Tag('test',data);
+      var input = new Performer.Tag('test', data);
       expect(input.attr_html()).toEqual('type="text" class="email"');
     });
 
@@ -29,7 +28,7 @@ define(['performer'],function(Performer) {
           attr3: null
         }
       };
-      var input = new Performer.Tag('input',data);
+      var input = new Performer.Tag('input', data);
       expect(input.attr_html()).toEqual('type="text" class="email"');
     });
 

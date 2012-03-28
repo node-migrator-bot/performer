@@ -1,5 +1,4 @@
 define(['performer'],function(Performer) {
-
   describe('Performer', function() {
 
     it('should be defined', function() {
@@ -7,5 +6,4 @@ define(['performer'],function(Performer) {
     });
 
   });
-
 });

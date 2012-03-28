@@ -7,17 +7,12 @@ define(['performer'],function(Performer) {
     });
 
     describe('attr_html', function() {
-
-      var form,serialize;
+      var form, serialize;
       beforeEach(function() {
         form = new Performer.Form();
         serialize = Performer.Transform.Serialize.standard;
       });
-
-
-
     });
 
   });
-
 });

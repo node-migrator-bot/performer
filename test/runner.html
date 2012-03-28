@@ -19,10 +19,14 @@
 
   require([
     'spec/performer_spec',
-    'spec/form_spec',
+    'spec/type_spec',
+    'spec/schema_spec',
     'spec/tag_spec',
+    'spec/pipeline_spec',
+    'spec/output_spec',
+    'spec/form_spec',
     'spec/serialize_spec',
-    'spec/wrap_spec'
+    'spec/wrap_spec',
   ],
   function() {
     jasmine.getEnv().addReporter(new jasmine.TrivialReporter());

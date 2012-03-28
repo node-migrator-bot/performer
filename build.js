@@ -8,6 +8,8 @@
   // target amd loader shim as the main module, path is relative to baseUrl.
   name: '../vendor/almond',
 
+  optimize: 'none',
+
   // files to include along with almond.  only lib/skeleton.js is defined, as
   // it pulls in the rest of the dependencies automatically.
   include: ['performer'],
@@ -19,7 +21,7 @@
               // check for amd loader on global namespace
            "  var globalDefine = global.define;",
 
-    end:   "  var library = require('skeleton');"+
+    end:   "  var library = require('performer');"+
            "  if(typeof module !== 'undefined' && module.exports) {"+
                 // export library for node
            "    module.exports = library;"+
@@ -30,7 +32,7 @@
            "    }(globalDefine));"+
            "  } else {"+
                 // define library on global namespace for inline script loading
-           "    global['skeleton'] = library;"+
+           "    global['Performer'] = library;"+
            "  }"+
            "}(this));"
   },

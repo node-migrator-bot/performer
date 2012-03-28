@@ -2,9 +2,47 @@
 <html>
 <head>
   <title>Demo</title>
-  <script src="../build/performer.js"></script>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.2/bootstrap.min.js"/>
 </head>
 <body>
-Look, Performers's feature is: <script>document.write(Performer.feature())</script>
+<form  id="form"></div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../build/performer.js"></script>
+<script>
+
+
+var schema = {
+
+  fields: {
+    text_test:     { type: 'text' },
+    number_test:   { type: 'number' },
+    email_test:    { type: 'email' },
+    url_test:      { type: 'url' },
+    phone_test:    { type: 'phone' },
+    date_test:     { type: 'date' },
+    password_test: { type: 'password' },
+    select_test:   { type: 'select' },
+    textarea_test: { type: 'textarea' },
+    hidden_test:   { type: 'hidden' },
+    file_test:     { type: 'file' },
+    checkbox_test: { type: 'checkbox' },
+    radio_test:    { type: 'radio' },
+    button_test:   { type: 'button' },
+    submit_test:   { type: 'submit' }
+  }
+
+};
+
+var options = {
+
+};
+
+var form = new Performer.Form(schema,options);
+var output = form.build_all();
+$('#form').html(form.build_all())
+
+</script>
 </body>
 </html>
+
+ 'input',

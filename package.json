@@ -1,6 +1,6 @@
 {
   "name": "performer",
-  "description": "A fast form generation library for node and the browser with no external dependencies.",
+  "description": "A form generation library for node and the browser.",
   "version": "0.0.1",
   "author": "Tyler Kellen",
   "repository": {

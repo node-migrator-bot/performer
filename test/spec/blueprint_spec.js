@@ -1,9 +1,10 @@
+// TODO add tests for blueprint keys
 define(['performer'],function(Performer) {
   describe('Performer.Blueprint', function() {
 
     var blueprint;
     beforeEach(function() {
-      blueprint = new Performer.Blueprint();
+      blueprint = Performer.Blueprints.html5;
     });
 
     it('should be defined', function() {
@@ -24,19 +25,63 @@ define(['performer'],function(Performer) {
       expect(blueprint.read('test')).toEqual({tag:'input'});
     });
 
-    it('should raise an error when adding a blueprint that already exists', function() {
+    it('should throw when adding a blueprint that already exists', function() {
       var test = function() { blueprint.add('text', {tag:'input'}); };
       expect(test).toThrow(new Error("Unable to add 'text' blueprint; it already exists."));
     });
 
     it('should allow existing blueprints to be extended with new values', function() {
-      blueprint.extend('text', {tag:'new'});
-      expect(blueprint.read('text')).toEqual({tag:'new', attributes:{type:'text'}});
+      blueprint.extend('select', {tag:'new'});
+      expect(blueprint.read('select')).toEqual({tag:'new',attributes:{}});
     });
 
-    it('should raise an error when trying to extend a blueprint that doesn\'t exist', function() {
-      var test = function() { blueprint.extend('test', {tag:'input'}); };
-      expect(test).toThrow(new Error("Unable to locate 'test' blueprint."));
+    it('should allow removing a blueprint', function() {
+      var test = function() { blueprint.remove('select'); blueprint.read('select'); };
+      expect(test).toThrow(new Error("Unable to locate 'select' blueprint."));
+    });
+
+    it('should throw when extending a blueprint that doesn\'t exist', function() {
+      var test = function() { blueprint.extend('notablueprint', {tag:'new'}); };
+      expect(test).toThrow(new Error("Unable to locate 'notablueprint' blueprint to extend."));
+    });
+
+    it('should impute blueprints', function(){
+      var data = { blueprint: 'email' };
+      var result = {
+        blueprint: 'email',
+        tag: 'input',
+        attributes: {
+          type: 'text'
+        }
+      };
+      expect(blueprint.impute(data)).toEqual(result);
+    });
+
+    it('should impute nested blueprints', function(){
+      var data = { blueprint: 'address' };
+      var address = {
+        _fields: {
+          addr1: { blueprint: 'text' },
+          addr2: { blueprint: 'text' },
+          city: { blueprint: 'text' },
+          state: { blueprint: 'text' },
+          zip: { blueprint: 'text' }
+        }
+      };
+      blueprint.add('address',address);
+
+      var result = {
+        blueprint: 'address',
+        _fields: {
+          addr1: { blueprint: 'text' },
+          addr2: { blueprint: 'text' },
+          city: { blueprint: 'text' },
+          state: { blueprint: 'text' },
+          zip: { blueprint: 'text' }
+        }
+      };
+
+      expect(blueprint.impute(data)).toEqual(result);
     });
 
   });

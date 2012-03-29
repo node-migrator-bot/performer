@@ -36,11 +36,11 @@ define(['performer'], function(Performer) {
                            [Performer.Transform.Serialize.standard],
                            [Performer.Transform.Wrap.fieldset]
                          );
-      var type_system = new Performer.Type();
+      var blueprint = new Performer.Blueprint();
 
       var options = {
         pipeline: pipeline,
-        type_system: type_system
+        blueprint: blueprint
       };
       form = new Performer.Form(schema, options);
       window.test = form;

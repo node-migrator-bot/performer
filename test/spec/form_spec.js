@@ -7,24 +7,24 @@ define(['performer'], function(Performer) {
 
         root: {
           _fields: {
-            name: { format: 'text' },
+            name: { blueprint: 'text' },
 
             account: {
               _fields: {
-                username: { format: 'text' },
-                password: { format: 'password' }
+                username: { blueprint: 'text' },
+                password: { blueprint: 'password' }
               }
             },
 
             contact: {
               _fields: {
-                first: { format: 'text' },
-                last: { format: 'text' },
+                first: { blueprint: 'text' },
+                last: { blueprint: 'text' },
 
                 details: {
                   _fields: {
-                    age: { format: 'number' },
-                    birthdate: { format: 'date' }
+                    age: { blueprint: 'number' },
+                    birthdate: { blueprint: 'date' }
                   }
                 }
               }
@@ -48,6 +48,16 @@ define(['performer'], function(Performer) {
 
     it('should be defined', function() {
       expect(Performer.Form).toBeDefined();
+    });
+
+    it('should throw on instantiation if invalid pipeline is supplied.',function() {
+      var test = function() { new Performer.Form({},{pipeline:'notapipline'}); };
+      expect(test).toThrow(new Error("Cannot create Form without a valid Pipeline."));
+    });
+
+    it('should throw on instantiation if invalid blueprint is supplied.',function() {
+      var test = function() { new Performer.Form({},{blueprint:'notablueprint'}); };
+      expect(test).toThrow(new Error("Cannot create Form without a valid Blueprint."));
     });
 
     it('should be able to build a tag from a schema',function(){

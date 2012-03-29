@@ -7,24 +7,24 @@ define(['performer'], function(Performer) {
 
         root: {
           _fields: {
-            name: { format: 'text' },
+            name: { blueprint: 'text' },
 
             account: {
               _fields: {
-                username: { format: 'text' },
-                password: { format: 'password' }
+                username: { blueprint: 'text' },
+                password: { blueprint: 'password' }
               }
             },
 
             contact: {
               _fields: {
-                first: { format: 'text' },
-                last: { format: 'text' },
+                first: { blueprint: 'text' },
+                last: { blueprint: 'text' },
 
                 details: {
                   _fields: {
-                    age: { format: 'number' },
-                    birthdate: { format: 'date' }
+                    age: { blueprint: 'number' },
+                    birthdate: { blueprint: 'date' }
                   }
                 }
               }

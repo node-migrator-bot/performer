@@ -43,7 +43,7 @@ define(['performer'],function(Performer) {
       var data = {
         root: {
           _fields: {
-            address: { format: 'address' }
+            address: { blueprint: 'address' }
           }
         }
       };
@@ -53,11 +53,11 @@ define(['performer'],function(Performer) {
       var form = new Performer.Form(data,type);
       form.options.type_system.replace('address',{
         _fields: {
-          addr1: { format: 'text' },
-          addr2: { format: 'text' },
-          city: { format: 'text' },
-          state: { format: 'text' },
-          zip: { format: 'text' }
+          addr1: { blueprint: 'text' },
+          addr2: { blueprint: 'text' },
+          city: { blueprint: 'text' },
+          state: { blueprint: 'text' },
+          zip: { blueprint: 'text' }
         }
       });
       window.form = form;

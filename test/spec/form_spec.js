@@ -36,9 +36,9 @@ define(['performer'], function(Performer) {
       };
       var options = {
         pipeline: new Performer.Pipeline(
-                    [Performer.Transform.Serialize.standard,Performer.Transform.Wrap.div],
-                    [Performer.Transform.Wrap.fieldset]
-                  ),
+          [Performer.Transform.Serialize.standard,Performer.Transform.Wrap.div],
+          [Performer.Transform.Wrap.fieldset]
+        ),
         blueprint: Performer.Blueprints.html5
       };
       form = new Performer.Form(schema, options);
@@ -51,12 +51,12 @@ define(['performer'], function(Performer) {
 
     it('should throw on instantiation if invalid pipeline is supplied.',function() {
       var test = function() { new Performer.Form({},{pipeline:'notapipline'}); };
-      expect(test).toThrow(new Error("Cannot create Form without a valid Blueprint and Pipeline."));
+      expect(test).toThrow(new Error("Cannot create Form without valid Blueprint and Pipeline."));
     });
 
     it('should throw on instantiation if invalid blueprint is supplied.',function() {
       var test = function() { new Performer.Form({},{blueprint:'notablueprint'}); };
-      expect(test).toThrow(new Error("Cannot create Form without a valid Blueprint and Pipeline."));
+      expect(test).toThrow(new Error("Cannot create Form without valid Blueprint and Pipeline."));
     });
 
     it('should be able to build a tag from a schema',function(){

@@ -99,12 +99,12 @@ var schema = new Performer.Schema(schema);
 
 #### Usage:
 
-Each pipeline has two sets of transformers, one for **tags** and one for **groups**.  When a form elements are generated, each one is passed through the **tag** pipeline.  Groups of processed tags are then passed through the **group** pipeline for final transformation.
+Each pipeline has two sets of transformers, one for **tags** and one for **groups**.  When a form (or a section of a form) is generated, each element is passed through the **tag** pipeline.  Groups of processed tags are then passed through the **group** pipeline for final transformation.
 
 #### Transformers are easy to write:
 
 ```
-var wrapper = function(input,output) {
+var wrapper = function(input, helper) {
   output.write("<div>"+input.read()+"</div>");
 }
 ```

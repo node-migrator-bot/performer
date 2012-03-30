@@ -17,7 +17,7 @@ define(['performer'],function(Performer) {
     });
 
     describe('li', function() {
-      it('should wrap input.read() with <li></li> and pass the result into output.write()', function() {
+      it('should wrap input.read() with <li></li> and pass the result into input.write()', function() {
         var wrap = Performer.Transform.Wrap.li;
         wrap(tag, tag);
         expect(tag.read()).toEqual("<li></li>");
@@ -25,7 +25,7 @@ define(['performer'],function(Performer) {
     });
 
     describe('div', function() {
-      it('should wrap input.read() with <div></div> and pass the result into output.write()', function() {
+      it('should wrap input.read() with <div></div> and pass the result into input.write()', function() {
         var wrap = Performer.Transform.Wrap.div;
         wrap(tag, tag);
         expect(tag.read()).toEqual("<div></div>");
@@ -33,7 +33,7 @@ define(['performer'],function(Performer) {
     });
 
     describe('p', function() {
-      it('should wrap input.read() with <p></p> and pass the result into output.write()', function() {
+      it('should wrap input.read() with <p></p> and pass the result into input.write()', function() {
         var wrap = Performer.Transform.Wrap.p;
         wrap(tag, tag);
         expect(tag.read()).toEqual("<p></p>");
@@ -41,7 +41,7 @@ define(['performer'],function(Performer) {
     });
 
     describe('span', function() {
-      it('should wrap input.read() with <span></span> and pass the result into output.write()', function() {
+      it('should wrap input.read() with <span></span> and pass the result into input.write()', function() {
         var wrap = Performer.Transform.Wrap.span;
         wrap(tag, tag);
         expect(tag.read()).toEqual("<span></span>");

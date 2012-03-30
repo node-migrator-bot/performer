@@ -7,7 +7,7 @@ define(['performer'], function(Performer) {
 
     it('should allow a value to be written to it', function() {
       var output = new Performer.Output();
-      output.write('test');
+      input.write('test');
       expect(output.read()).toEqual('test');
     });
 

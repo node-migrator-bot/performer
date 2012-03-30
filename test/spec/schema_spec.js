@@ -6,23 +6,23 @@ define(['performer'], function(Performer) {
       data = {
 
         root: {
-          _fields: {
+          _node: {
             name: { blueprint: 'text' },
 
             account: {
-              _fields: {
+              _node: {
                 username: { blueprint: 'text' },
                 password: { blueprint: 'password' }
               }
             },
 
             contact: {
-              _fields: {
+              _node: {
                 first: { blueprint: 'text' },
                 last: { blueprint: 'text' },
 
                 details: {
-                  _fields: {
+                  _node: {
                     age: { blueprint: 'number' },
                     birthdate: { blueprint: 'date' }
                   }
@@ -46,7 +46,7 @@ define(['performer'], function(Performer) {
 
     it('lookup should traverse the schema with dot notation', function() {
       var value = schema.read('contact.details');
-      expect(value).toEqual(data.root._fields.contact._fields.details);
+      expect(value).toEqual(data.root._node.contact._node.details);
     });
 
   });

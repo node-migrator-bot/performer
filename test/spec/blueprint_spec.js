@@ -60,7 +60,7 @@ define(['performer'],function(Performer) {
     it('should impute nested blueprints', function(){
       var data = { blueprint: 'address' };
       var address = {
-        _fields: {
+        _node: {
           addr1: { blueprint: 'text' },
           addr2: { blueprint: 'text' },
           city: { blueprint: 'text' },
@@ -72,7 +72,7 @@ define(['performer'],function(Performer) {
 
       var result = {
         blueprint: 'address',
-        _fields: {
+        _node: {
           addr1: { blueprint: 'text' },
           addr2: { blueprint: 'text' },
           city: { blueprint: 'text' },

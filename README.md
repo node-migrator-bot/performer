@@ -25,7 +25,7 @@ var data = {
     }
   }
   address: {
-    _fields: {
+    _node: {
       addr1: { blueprint: 'text' }
       addr2: { blueprint: 'text' }
       city: { blueprint: 'text' }
@@ -73,7 +73,7 @@ Anything you can put in a Schema (defined below) can be stored in a Blueprint fo
 ```
 var schema = {
   root: {
-    _fields: {
+    _node: {
       contact:{
         first: { blueprint: 'text' },
         last: { blueprint: 'text' },

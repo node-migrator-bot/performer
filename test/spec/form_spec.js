@@ -59,14 +59,19 @@ define(['performer'], function(Performer) {
       expect(test).toThrow(new Error("Cannot create Form without valid Blueprint and Pipeline."));
     });
 
-    it('should be able to build a tag from a schema',function(){
-      var tag = form.build('root',false);
-      expect(tag).toEqual('<fieldset><div><input type="text" id="name"/></div></fieldset>');
+    it('should build a section of form schema without traversing',function(){
+      var result = form.build('account',false);
+      expect(result).toEqual('<fieldset><div><input type="text" id="username"/></div><div><input type="password" id="password"/></div></fieldset>');
     });
 
-    it('should be able to build an entire form from a schema',function(){
-      var output = form.build();
-      expect(output).toEqual('<fieldset><div><input type="text" id="name"/></div><fieldset><div><input type="text" id="username"/></div><div><input type="password" id="password"/></div></fieldset><fieldset><div><input type="text" id="first"/></div><div><input type="text" id="last"/></div><fieldset><div><input type="text" id="age"/></div><div><input type="text" id="birthdate"/></div></fieldset></fieldset></fieldset>');
+    it('should build a section of form schema with traversal',function() {
+      var result = form.build('contact',true);
+      expect(result).toEqual('<fieldset><div><input type="text" id="first"/></div><div><input type="text" id="last"/></div><fieldset><div><input type="number" id="age"/></div><div><input type="date" id="birthdate"/></div></fieldset></fieldset>');
+    });
+
+    it('should build entire form if no arguments are passed', function() {
+      var result = form.build();
+      expect(result).toEqual('<fieldset><div><input type="text" id="name"/></div><fieldset><div><input type="text" id="username"/></div><div><input type="password" id="password"/></div></fieldset><fieldset><div><input type="text" id="first"/></div><div><input type="text" id="last"/></div><fieldset><div><input type="number" id="age"/></div><div><input type="date" id="birthdate"/></div></fieldset></fieldset></fieldset>');
     });
 
   });

@@ -49,5 +49,10 @@ define(['performer'], function(Performer) {
       expect(value).toEqual(data.root._node.contact._node.details);
     });
 
+    it('should return a copy of the object requested, not the source', function() {
+      var value = schema.read();
+      expect(data).toNotEqual(value);
+    });
+
   });
 });

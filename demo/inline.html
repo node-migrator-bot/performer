@@ -2,47 +2,59 @@
 <html>
 <head>
   <title>Demo</title>
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.2/bootstrap.min.js"/>
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css"/>
 </head>
 <body>
-<form  id="form"></div>
+<form class="well" id="form"></div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="../build/performer.js"></script>
 <script>
+(function() {
+  var schema = {
 
+    root: {
+      _node: {
+        name: { blueprint: 'text' },
 
-var schema = {
+        account: {
+          _node: {
+            username: {
+              blueprint: 'text',
+              attributes: {
+                placeholder: 'username'
+              }
+            },
+            password: { blueprint: 'password' }
+          }
+        },
 
-  _node: {
-    text_test:     { type: 'text' },
-    number_test:   { type: 'number' },
-    email_test:    { type: 'email' },
-    url_test:      { type: 'url' },
-    phone_test:    { type: 'phone' },
-    date_test:     { type: 'date' },
-    password_test: { type: 'password' },
-    select_test:   { type: 'select' },
-    textarea_test: { type: 'textarea' },
-    hidden_test:   { type: 'hidden' },
-    file_test:     { type: 'file' },
-    checkbox_test: { type: 'checkbox' },
-    radio_test:    { type: 'radio' },
-    button_test:   { type: 'button' },
-    submit_test:   { type: 'submit' }
-  }
+        contact: {
+          _node: {
+            first: { blueprint: 'text' },
+            last: { blueprint: 'text' },
 
-};
+            details: {
+              _node: {
+                age: { blueprint: 'number' },
+                birthdate: { blueprint: 'date' }
+              }
+            }
+          }
+        }
+      }
+    }
 
-var options = {
+  };
 
-};
+  var options = {
+    blueprint: Performer.Blueprints.html5,
+    pipeline: Performer.Pipelines.bootstrap
+  };
+  var form = new Performer.Form(schema, options);
 
-var form = new Performer.Form(schema,options);
-var output = form.build_all();
-$('#form').html(form.build_all())
+  $('#form').html(form.build())
 
+})();
 </script>
 </body>
 </html>
-
- 'input',

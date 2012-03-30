@@ -5,13 +5,5 @@ define(['performer'],function(Performer) {
       expect(Performer.Transform.Serialize).toBeDefined();
     });
 
-    describe('attr_html', function() {
-      var form, serialize;
-      beforeEach(function() {
-        form = new Performer.Form();
-        serialize = Performer.Transform.Serialize.standard;
-      });
-    });
-
   });
 });

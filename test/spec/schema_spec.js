@@ -39,18 +39,19 @@ define(['performer'], function(Performer) {
       expect(Performer.Schema).toBeDefined();
     });
 
-    it('lookup should return the entire schema when no arguments are passed', function() {
+    it('read should return the entire schema when no arguments are passed', function() {
       var value = schema.read();
       expect(value).toEqual(data);
     });
 
-    it('lookup should traverse the schema with dot notation', function() {
+    it('read should traverse the schema with dot notation', function() {
       var value = schema.read('contact.details');
       expect(value).toEqual(data.root._node.contact._node.details);
     });
 
     it('should return a copy of the object requested, not the source', function() {
       var value = schema.read();
+      value = {};
       expect(data).toNotEqual(value);
     });
 

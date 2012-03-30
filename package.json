@@ -19,7 +19,10 @@
     "node": ">= 0.6.0"
   },
   "keywords": [
-    "forms"
+    "forms",
+    "form builder",
+    "form generator",
+    "form generation"
   ],
   "dependencies": {
 
@@ -30,6 +33,7 @@
   "devDependencies": {
     "system": "*",
     "requirejs": "*",
-    "servedir": "*"
+    "servedir": "*",
+    "pretty-data": "*"
   }
 }

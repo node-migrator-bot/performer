@@ -10,6 +10,25 @@
 <script src="../build/performer.js"></script>
 <script>
 (function() {
+
+
+  var blueprint = Performer.Blueprints.html5;
+  blueprint.add('address',{
+    _node: {
+      addr1: { blueprint: 'text' },
+      addr2: { blueprint: 'text' },
+      city: { blueprint: 'text' },
+      state: { blueprint: 'text' },
+      zip: { blueprint: 'text' }
+    }
+  });
+
+  var options = {
+    blueprint: blueprint,
+    pipeline: Performer.Pipelines.bootstrap
+  };
+
+
   var schema = {
 
     root: {
@@ -32,6 +51,7 @@
           _node: {
             first: { blueprint: 'text' },
             last: { blueprint: 'text' },
+            address: { blueprint: 'address' },
 
             details: {
               _node: {
@@ -46,11 +66,7 @@
 
   };
 
-  var options = {
-    blueprint: Performer.Blueprints.html5,
-    pipeline: Performer.Pipelines.bootstrap
-  };
-  var form = new Performer.Form(schema, options);
+  var form = new Performer.Form(schema, {}, options);
 
   $('#form').html(form.build())
 

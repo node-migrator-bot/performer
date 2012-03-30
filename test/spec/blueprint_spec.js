@@ -25,14 +25,24 @@ define(['performer'],function(Performer) {
       expect(blueprint.read('test')).toEqual({tag:'input'});
     });
 
+    it('should allow adding blueprints in bulk', function() {
+
+      expect().toEqual(true);
+    });
+
     it('should throw when adding a blueprint that already exists', function() {
       var test = function() { blueprint.add('text', {tag:'input'}); };
       expect(test).toThrow(new Error("Unable to add 'text' blueprint; it already exists."));
     });
 
-    it('should allow existing blueprints to be extended with new values', function() {
-      blueprint.extend('select', {tag:'new'});
-      expect(blueprint.read('select')).toEqual({tag:'new',attributes:{}});
+    it('should allow existing blueprints to be modified with new values', function() {
+
+      expect().toEqual(true);
+    });
+
+    it('should allow existing blueprints to be replaced', function() {
+      blueprint.replace('select', {whatever:'test'});
+      expect(blueprint.read('select')).toEqual({whatever:'test'});
     });
 
     it('should allow removing a blueprint', function() {

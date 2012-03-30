@@ -1,30 +1,44 @@
+[![Build Status](https://secure.travis-ci.org/tkellen/performer.png)](http://travis-ci.org/[tkellen]/[performer]) *Build status will show failing until travis-ci upgrades to PhantomJS 1.5.*
+
 # Performer
 > DRY up your forms like never before.
 
-[![Build Status](https://secure.travis-ci.org/tkellen/performer.png)](http://travis-ci.org/[tkellen]/[performer])
-*Will show failing until travis-ci upgrades to PhantomJS 1.5.*
+This library is will not get in your way.  It has no external dependencies, it works in Node or the browser (with AMD, or as an inline script) and it ships with full test coverage.  The implementation is simple, elegant and powerful.  *Plugin for integration with [Backbone](http://documentcloud.github.com/backbone/) coming soon.*
 
-#### Ships with:
- - Full test coverage
- - No external dependencies
- - Node and Browser support (use with AMD or as an inline script)
+**Version v0.0.1**: *this is **alpha** quality software, the API is changing regularly, it is not ready for public use.*
 
 ## Concepts
 
-### Blueprints
-> Easily define and extend Blueprints for global re-use in your schemas (ships with [HTML5](https://github.com/tkellen/performer/blob/master/lib/performer/blueprints/html5.js)).
+**Blueprint:** Commonly used form elements, described in JSON.
 
-#### Create a Blueprint:
+**Schema:** A specific form, described in JSON (referencing Blueprints).
+
+**Transformer:** Functions that can modify or otherwise interact with form tags during generation (e.g. wrap with div tags).
+
+**Pipeline:** A defined set of transformers to apply to a given form element or group to produce marked up HTML.
+
+## Usage
+
+### Blueprints
+> Easily define and extend Blueprints for global re-use in your Schemas (ships with [blueprint for HTML5 forms](https://github.com/tkellen/performer/blob/master/lib/performer/blueprints/html5.js)).
+
+##### Create your Blueprint:
+```javascript
+var blueprint = new Performer.Blueprints.html5;
 ```
-var data = {
-  email: {
-    tag: 'input',
-    attributes: {
-      type: 'email',
-      className: 'email_field'
-    }
+
+*You can skip the blueprinting process for simple forms&mdash;the [built-in HTML5 blueprint](https://github.com/tkellen/performer/blob/master/lib/performer/blueprints/html5.js) has definitions for most common form elements.*
+
+##### Add Blueprints one at a time, or in bulk:
+```javascript
+blueprint.add('text', {
+  tag: 'input',
+  attributes: {
+    type: 'text'
   }
-  address: {
+});
+
+blueprint.add('address', {
     _node: {
       addr1: { blueprint: 'text' }
       addr2: { blueprint: 'text' }
@@ -33,44 +47,48 @@ var data = {
       zip: { blueprint: 'number' }
   }
 };
-var blueprint = new Performer.Blueprint(data);
-````
 
-#### Add to a Blueprint:
-```
-blueprint.add('text',{
-  tag: 'input',
-  attributes: {
-    type: 'text'
+var data = {
+  number: {
+    tag: 'input',
+    attributes: {
+      type: 'number'
+    }
+  },
+  email: {
+    tag: 'input',
+    attributes: {
+      type: 'email'
+    }
   }
-});
+};
+// WARNING: this will replace any existing blueprints that share the same key
+blueprint.add_many(data);
 ```
 
-#### Modify a Blueprint:
-```
-blueprint.extend('text',{
+##### Modify, replace or remove an existing Blueprint:
+```javascript
+blueprint.modify('text', {
   attributes: {
     className: 'text_field'
   }
 });
-```
 
-#### Remove elements from a Blueprint:
-```
+blueprint.replace('text', {replaced:'yup'})
+
 blueprint.remove('text');
 ```
 
-#### Usage:
-
-Anything you can put in a Schema (defined below) can be stored in a Blueprint for use across multiple forms.  In the "Create a Blueprint" example above, a series of common fields used to display an address has been added.  This can be included in any form by referencing the blueprint by name (shown below).
+#### Blueprint Usage Notes:
+Anything you can put in a Schema (defined below) can be stored in a Blueprint for use across multiple forms.  In the example above, a series of common fields used to display an address has been added.  This can be included in any form by referencing the blueprint by name (shown below).
 
 ---
 
 ### Schemas
-> Describe your form once, optionally referencing your blueprints to do the heavy lifting.
+> Describe your form once, referencing blueprints to do the heavy lifting.
 
-#### Create a Schema:
-```
+##### Create your Schema:
+```javascript
 var schema = {
   root: {
     _node: {
@@ -85,31 +103,25 @@ var schema = {
 var schema = new Performer.Schema(schema);
 ```
 
-### Form
-> Generate your forms with a single call, in sections, or tag-by-tag.
-
-#### Usage:
-
-...coming soon.
+#### Schema Usage Notes:
+...fill this out.
 
 ---
 
-### Pipelines and Transformers
-> Mark up your form elements by creating a pipeline to transform them any way you like.
+### Transformers
+> Generate your form elements any way you please.
 
-#### Usage:
-
-Each pipeline has two sets of transformers, one for **tags** and one for **groups**.  When a form (or a section of a form) is generated, each element is passed through the **tag** pipeline.  Groups of processed tags are then passed through the **group** pipeline for final transformation.
-
-#### Transformers are easy to write:
-
-```
-var wrapper = function(input, helper) {
+##### Transformers are easy to write:
+```javascript
+var wrapper = function(input, helpers) {
   output.write("<div>"+input.read()+"</div>");
 }
 ```
 
-#### Performer ships with these transformers:
+#### Transformer Usage Notes:
+Explain how transformers can reference attributes in schemas.
+
+Performer ships with these transformers:
 
   * Performer.Transform.Wrap
     - fieldset, legend, div, ol, ul, li, div, p
@@ -120,3 +132,28 @@ var wrapper = function(input, helper) {
   * Performer.Transform.Error
     - before, after
 
+---
+
+### Pipelines
+> Package your transformations for re-use.
+
+##### Example:
+```javascript
+// examples here
+```
+
+#### Pipeline Usage Notes:
+Each pipeline has two sets of transformers, one for **tags** and one for **groups**.  When a form (or a section of a form) is generated, each element is passed through the **tag** pipeline.  Groups of processed tags are then passed through the **group** pipeline for final transformation.
+
+---
+
+### Form
+> Generate your forms however you like; on the server, in a browser, in conjuction with a templating engine, directly into the DOM, whatever!  Build the whole thing with a single call, in sections, or tag-by-tag.
+
+##### Example:
+```javascript
+// examples here
+```
+
+#### Form Usage Notes:
+...fill this out.

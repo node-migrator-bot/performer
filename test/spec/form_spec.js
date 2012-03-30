@@ -41,7 +41,7 @@ define(['performer'], function(Performer) {
         ),
         blueprint: Performer.Blueprints.html5
       };
-      form = new Performer.Form(schema, options);
+      form = new Performer.Form(schema, {}, options);
       window.test = form;
     });
 
@@ -50,12 +50,12 @@ define(['performer'], function(Performer) {
     });
 
     it('should throw on instantiation if invalid pipeline is supplied.',function() {
-      var test = function() { new Performer.Form({},{pipeline:'notapipline'}); };
+      var test = function() { new Performer.Form({},{},{pipeline:'notapipline'}); };
       expect(test).toThrow(new Error("Cannot create Form without valid Blueprint and Pipeline."));
     });
 
     it('should throw on instantiation if invalid blueprint is supplied.',function() {
-      var test = function() { new Performer.Form({},{blueprint:'notablueprint'}); };
+      var test = function() { new Performer.Form({},{},{blueprint:'notablueprint'}); };
       expect(test).toThrow(new Error("Cannot create Form without valid Blueprint and Pipeline."));
     });
 

@@ -1,13 +1,74 @@
 <!doctype html>
 <html>
 <head>
-  <title>Demo</title>
-  <script src="../vendor/require.js"></script>
+  <title>AMD Demo</title>
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css"/>
 </head>
 <body>
+<form class="well" id="form"></div>
+
+<script src="../vendor/require.js"></script>
 <script>
 require(['../build/performer'],function(Performer){
-  console.log("Look, performer's feature is "+Performer.feature());
+
+  var blueprint = Performer.Blueprints.html5;
+  blueprint.add('address',{
+    _node: {
+      addr1: { blueprint: 'text' },
+      addr2: { blueprint: 'text' },
+      city: { blueprint: 'text' },
+      state: { blueprint: 'text' },
+      zip: { blueprint: 'text' }
+    }
+  });
+
+  var options = {
+    blueprint: blueprint,
+    pipeline: Performer.Pipelines.bootstrap
+  };
+
+
+  var schema = {
+
+    root: {
+      _node: {
+        name: { blueprint: 'text' },
+
+        account: {
+          _node: {
+            username: {
+              blueprint: 'text',
+              attributes: {
+                placeholder: 'username'
+              }
+            },
+            password: { blueprint: 'password' }
+          }
+        },
+
+        contact: {
+          _node: {
+            first: { blueprint: 'text' },
+            last: { blueprint: 'text' },
+            address: { blueprint: 'address' },
+
+            details: {
+              _node: {
+                age: { blueprint: 'number' },
+                birthdate: { blueprint: 'date' }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  };
+
+  var form = new Performer.Form(schema, {}, options);
+
+  $('#form').html(form.build())
+
 });
 </script>
 </body>

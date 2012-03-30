@@ -3,7 +3,7 @@
 # Performer
 > DRY up your forms like never before.
 
-This library is will not get in your way.  It has no external dependencies, it works in Node or the browser (with AMD, or as an inline script) and it ships with full test coverage.  The implementation is simple, elegant and powerful.  *Plugin for integration with [Backbone](http://documentcloud.github.com/backbone/) coming soon.*
+This library will not get in your way.  It has no external dependencies, it works in Node or the browser (with AMD, or as an inline script) and it ships with full test coverage.  The implementation is simple, elegant and powerful.  *Plugins for integration with [Backbone](http://documentcloud.github.com/backbone/) coming soon.*
 
 **Version v0.0.1**: *this is **alpha** quality software, the API is changing regularly, it is not ready for public use.*
 
@@ -66,7 +66,7 @@ var data = {
 blueprint.add_many(data);
 ```
 
-##### Modify, replace or remove an existing Blueprint:
+##### Modify, replace, or remove an existing Blueprint:
 ```javascript
 blueprint.modify('text', {
   attributes: {

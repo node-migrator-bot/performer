@@ -13,9 +13,9 @@ Performer has no external dependencies, it works in Node or the browser (with AM
 
 **Schema:** A specific form, described in JSON (referencing Blueprints).
 
-**Transformer:** Functions that can modify or otherwise interact with form tags during generation (e.g. wrap with div tags).
+**Transformer:** Functions that can modify or otherwise interact with form tags during generation (e.g. wrap with a div).
 
-**Pipeline:** A defined set of transformers to apply to a given form element or group to produce marked up HTML.
+**Pipeline:** A set of transformers to apply to a given form element or group to produce marked up HTML.
 
 ## Usage
 
@@ -24,7 +24,7 @@ Performer has no external dependencies, it works in Node or the browser (with AM
 
 ##### Create your Blueprint:
 ```javascript
-var blueprint = new Performer.Blueprints.html5;
+var blueprint = new Performer.Blueprints.html5();
 ```
 
 *You can skip the blueprinting process for simple forms&mdash;the [built-in HTML5 blueprint](https://github.com/tkellen/performer/blob/master/lib/performer/blueprints/html5.js) has definitions for most common form elements.*
@@ -109,7 +109,7 @@ var schema = new Performer.Schema(schema);
 ---
 
 ### Transformers
-> Generate your form elements any way you please.
+> Generate form elements any way you please.
 
 ##### Transformers are easy to write:
 ```javascript

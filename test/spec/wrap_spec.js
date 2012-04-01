@@ -9,7 +9,7 @@ define(['performer'],function(Performer) {
           className: 'test'
         }
       };
-      tag = new Performer.Tag('email', data);
+      tag = new Performer.Tag('email', '', data);
     });
 
     it('should be defined', function() {

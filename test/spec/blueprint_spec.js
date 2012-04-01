@@ -1,10 +1,10 @@
 // TODO add tests for blueprint keys
-define(['performer'],function(Performer) {
+define(['performer',''],function(Performer) {
   describe('Performer.Blueprint', function() {
-
+/*
     var blueprint;
     beforeEach(function() {
-      blueprint = Performer.Blueprints.html5;
+      blueprint = Performer.Blueprints.html5();
     });
 
     it('should be defined', function() {
@@ -41,18 +41,18 @@ define(['performer'],function(Performer) {
     });
 
     it('should allow existing blueprints to be replaced', function() {
-      blueprint.replace('select', {whatever:'test'});
-      expect(blueprint.read('select')).toEqual({whatever:'test'});
+      blueprint.replace('hidden', {whatever:'test'});
+      expect(blueprint.read('hidden')).toEqual({whatever:'test'});
     });
 
     it('should allow removing a blueprint', function() {
-      var test = function() { blueprint.remove('select'); blueprint.read('select'); };
-      expect(test).toThrow(new Error("Unable to locate 'select' blueprint."));
+      var test = function() { blueprint.remove('hidden'); blueprint.read('hidden'); };
+      expect(test).toThrow(new Error("Unable to locate 'hidden' blueprint."));
     });
 
     it('should throw when extending a blueprint that doesn\'t exist', function() {
-      var test = function() { blueprint.extend('notablueprint', {tag:'new'}); };
-      expect(test).toThrow(new Error("Unable to locate 'notablueprint' blueprint to extend."));
+      var test = function() { blueprint.modify('notablueprint', {tag:'new'}); };
+      expect(test).toThrow(new Error("Unable to locate 'notablueprint' blueprint to modify."));
     });
 
     it('should impute blueprints', function(){
@@ -93,6 +93,6 @@ define(['performer'],function(Performer) {
 
       expect(blueprint.impute(data)).toEqual(result);
     });
-
+*/
   });
 });

@@ -1,7 +1,7 @@
 var Performer = require('../build/performer');
 var pd = require('pretty-data').pd;
 
-var blueprint = Performer.Blueprints.html5;
+var blueprint = Performer.Blueprints.html5();
 blueprint.add('address',{
   _node: {
     addr1: { blueprint: 'text' },
@@ -14,7 +14,7 @@ blueprint.add('address',{
 
 var options = {
   blueprint: blueprint,
-  pipeline: Performer.Pipelines.bootstrap
+  pipeline: Performer.Pipelines.bootstrap()
 };
 
 

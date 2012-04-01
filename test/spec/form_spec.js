@@ -1,47 +1,18 @@
 // TODO: add tests for pipeline overrides at the tag and section level
-define(['performer'], function(Performer) {
+define(['performer','spec/spec_helper'], function(Performer, SpecHelper) {
 
   describe('Performer.Form', function() {
 
-    var form,data;
+    var form;
     beforeEach(function(){
-      var schema = {
-
-        root: {
-          _node: {
-            name: { blueprint: 'text' },
-
-            account: {
-              _node: {
-                username: { blueprint: 'text' },
-                password: { blueprint: 'password' }
-              }
-            },
-
-            contact: {
-              _node: {
-                first: { blueprint: 'text' },
-                last: { blueprint: 'text' },
-
-                details: {
-                  _node: {
-                    age: { blueprint: 'number' },
-                    birthdate: { blueprint: 'date' }
-                  }
-                }
-              }
-            }
-          }
-        }
-      };
       var options = {
         pipeline: new Performer.Pipeline(
           [Performer.Transform.Serialize.standard,Performer.Transform.Wrap.div],
           [Performer.Transform.Wrap.fieldset]
         ),
-        blueprint: Performer.Blueprints.html5
+        blueprint: Performer.Blueprints.html5()
       };
-      form = new Performer.Form(schema, {}, options);
+      form = new Performer.Form(SpecHelper.schema, {}, options);
       window.test = form;
     });
 
@@ -61,17 +32,17 @@ define(['performer'], function(Performer) {
 
     it('should build a section of form schema without traversing',function(){
       var result = form.build('account',false);
-      expect(result).toEqual('<fieldset><div><input type="text" id="username"/></div><div><input type="password" id="password"/></div></fieldset>');
+      expect(result).toEqual('<fieldset><div><input type="text" placeholder="placeholder text" id="username"/></div><div><input type="password" id="password"/></div></fieldset>');
     });
 
     it('should build a section of form schema with traversal',function() {
       var result = form.build('contact',true);
-      expect(result).toEqual('<fieldset><div><input type="text" id="first"/></div><div><input type="text" id="last"/></div><fieldset><div><input type="number" id="age"/></div><div><input type="date" id="birthdate"/></div></fieldset></fieldset>');
+      expect(result).toEqual('<fieldset><div><input type="text" id="first"/></div><div><input type="text" id="last"/></div><div><select id="type"><option value="admin">Administrator</option><option value="user">User</option></select></div><fieldset><div><input type="number" id="age"/></div><div><input type="date" id="birthdate"/></div></fieldset></fieldset>');
     });
 
     it('should build entire form if no arguments are passed', function() {
       var result = form.build();
-      expect(result).toEqual('<fieldset><div><input type="text" id="name"/></div><fieldset><div><input type="text" id="username"/></div><div><input type="password" id="password"/></div></fieldset><fieldset><div><input type="text" id="first"/></div><div><input type="text" id="last"/></div><fieldset><div><input type="number" id="age"/></div><div><input type="date" id="birthdate"/></div></fieldset></fieldset></fieldset>');
+      expect(result).toEqual('<fieldset><div><input type="text" id="name"/></div><fieldset><div><input type="text" placeholder="placeholder text" id="username"/></div><div><input type="password" id="password"/></div></fieldset><fieldset><div><input type="text" id="first"/></div><div><input type="text" id="last"/></div><div><select id="type"><option value="admin">Administrator</option><option value="user">User</option></select></div><fieldset><div><input type="number" id="age"/></div><div><input type="date" id="birthdate"/></div></fieldset></fieldset></fieldset>');
     });
 
   });

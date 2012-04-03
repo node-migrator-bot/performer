@@ -31,34 +31,32 @@ var blueprint = new Performer.Blueprints.html5();
 
 ##### Add Blueprints one at a time, or in bulk:
 ```javascript
-blueprint.add('text', {
-  tag: 'input',
-  attributes: {
-    type: 'text'
+blueprint.add("text", {
+  "tag": "input",
+  "attributes": {
+    "type": "text"
   }
 });
 
-blueprint.add('address', {
-    _node: {
-      addr1: { blueprint: 'text' }
-      addr2: { blueprint: 'text' }
-      city: { blueprint: 'text' }
-      state: { blueprint: 'select' }
-      zip: { blueprint: 'number' }
-  }
+blueprint.add("address", {
+  "addr1": { "blueprint": "text" },
+  "addr2": { "blueprint": "text" },
+  "city": { "blueprint": "text" },
+  "state": { "blueprint": "select" },
+  "zip": { "blueprint": "number" },
 };
 
 var data = {
-  number: {
-    tag: 'input',
-    attributes: {
-      type: 'number'
+  "number": {
+    "tag": "input",
+    "attributes": {
+      "type": "number"
     }
   },
-  email: {
-    tag: 'input',
-    attributes: {
-      type: 'email'
+  "email": {
+    "tag": "input",
+    "attributes": {
+      "type": "email"
     }
   }
 };
@@ -68,15 +66,15 @@ blueprint.add_many(data);
 
 ##### Modify, replace, or remove an existing Blueprint:
 ```javascript
-blueprint.modify('text', {
-  attributes: {
-    className: 'text_field'
+blueprint.modify("text", {
+  "attributes": {
+    "className": "text_field"
   }
 });
 
-blueprint.replace('text', {replaced:'yup'})
+blueprint.replace("text", {"replaced": "yup"})
 
-blueprint.remove('text');
+blueprint.remove("text");
 ```
 
 #### Blueprint Usage Notes:
@@ -89,18 +87,16 @@ Anything you can put in a Schema (defined below) can be stored in a Blueprint fo
 
 ##### Create your Schema:
 ```javascript
-var schema = {
-  root: {
-    _node: {
-      contact:{
-        first: { blueprint: 'text' },
-        last: { blueprint: 'text' },
-        address: { blueprint: 'address' }
-      }
-    }
+var data = {
+
+  "contact": {
+    "first": { "blueprint": "text" },
+    "last": { "blueprint": "text" },
+    "address": { "blueprint": "address" }
   }
+
 }
-var schema = new Performer.Schema(schema);
+var schema = new Performer.Schema(data);
 ```
 
 #### Schema Usage Notes:

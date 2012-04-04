@@ -44,7 +44,7 @@ blueprint.add("address", {
   "city": { "blueprint": "text" },
   "state": { "blueprint": "select" },
   "zip": { "blueprint": "number" },
-};
+});
 
 var data = {
   "number": {
@@ -88,14 +88,12 @@ Anything you can put in a Schema (defined below) can be stored in a Blueprint fo
 ##### Create your Schema:
 ```javascript
 var data = {
-
   "contact": {
     "first": { "blueprint": "text" },
     "last": { "blueprint": "text" },
     "address": { "blueprint": "address" }
   }
-
-}
+};
 var schema = new Performer.Schema(data);
 ```
 

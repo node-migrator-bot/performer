@@ -11,64 +11,57 @@
 <script>
 (function() {
 
-
   var blueprint = Performer.Blueprints.html5();
   blueprint.add('address',{
-    _node: {
-      addr1: { blueprint: 'text' },
-      addr2: { blueprint: 'text' },
-      city: { blueprint: 'text' },
-      state: { blueprint: 'text' },
-      zip: { blueprint: 'text' }
-    }
+    addr1: { blueprint: 'text' },
+    addr2: { blueprint: 'text' },
+    city: { blueprint: 'text' },
+    state: { blueprint: 'text' },
+    zip: { blueprint: 'text' }
   });
 
   var options = {
     blueprint: blueprint,
-    pipeline: Performer.Pipelines.bootstrap()
+    pipeline: Performer.Pipelines.semantic()
   };
 
 
-  var schema = {
-    root: {
-      _node: {
-        name: { blueprint: 'text' },
+  var data = {
 
-        account: {
-          _node: {
-            username: {
-              blueprint: 'text',
-              attributes: {
-                placeholder: 'placeholder text'
-              }
-            },
-            password: { blueprint: 'password' }
-          }
-        },
+    "name": {
+      "blueprint": "text"
+    },
 
-        contact: {
-          _node: {
-            first: { blueprint: 'text' },
-            last: { blueprint: 'text' },
-            type: {
-              blueprint: 'select',
-              options: {
-                admin: 'Administrator',
-                user: 'User'
-              }
-            },
-
-            details: {
-              _node: {
-                age: { blueprint: 'number' },
-                birthdate: { blueprint: 'date' }
-              }
-            }
-          }
+    "account": {
+      "username": {
+        "blueprint": 'text',
+        "attributes": {
+          "placeholder": "placeholder text"
         }
+      },
+      "password": { "blueprint": "password" }
+
+    },
+
+    "contact": {
+      "first": { "blueprint": "text" },
+      "last": { "blueprint": "text" },
+      "address": { "blueprint": "address" },
+      "type": {
+        "blueprint": "select",
+        "options": {
+          "admin": "Administrator",
+          "user": "User"
+        }
+      },
+
+      details: {
+        "age": { "blueprint": "number" },
+        "birthdate": { "blueprint": "date" }
       }
     }
   };
+  var schema = new Performer.Schema(data);
 
   var form = new Performer.Form(schema, {}, options);
 

@@ -1,5 +1,4 @@
-// TODO add tests for blueprint keys
-define(['performer',''],function(Performer) {
+define(['performer'],function(Performer) {
   describe('Performer.Blueprint', function() {
 
     var blueprint;
@@ -58,7 +57,6 @@ define(['performer',''],function(Performer) {
     it('should impute blueprints', function() {
       var data = { "blueprint": "email" };
       var result = {
-        "blueprint": "email",
         "tag": "input",
         "attributes": {
           "type": "text"
@@ -79,7 +77,6 @@ define(['performer',''],function(Performer) {
       blueprint.add('address',address);
 
       var result = {
-        "blueprint": "address",
         "addr1": { "blueprint": "text" },
         "addr2": { "blueprint": "text" },
         "city": { "blueprint": "text" },

@@ -18,8 +18,8 @@ define(['performer'], function(Performer) {
           className: 'email'
         }
       };
-      var tag = new Performer.Tag('test', '', data);
-      expect(pipeline.tag(tag)).toEqual('<input type="text" class="email" id="test"/>');
+      var tag = new Performer.Tag('test', 'test', '', data);
+      expect(pipeline.tag(tag)).toEqual('<input type="text" class="email" id="test" name="test"/>');
     });
 
     describe("Helpers", function() {

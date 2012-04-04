@@ -28,9 +28,11 @@ define(function() {
 
       "details": {
         "age": { "blueprint": "number" },
-        "birthdate": { "blueprint": "date" }
+        "birthdate": { "blueprint": "date" },
+        "address": { "blueprint": "address" }
       }
     }
+
   };
 
   return Schema;

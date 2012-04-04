@@ -1,3 +1,4 @@
+// needs more testing
 define(['performer'],function(Performer) {
   describe('Performer.Tag', function() {
 

@@ -1,9 +1,7 @@
-[![Build Status](https://secure.travis-ci.org/tkellen/performer.png)](http://travis-ci.org/[tkellen]/[performer]) *Build status will show failing until travis-ci upgrades to PhantomJS 1.5.*
-
-# Performer
+# Performer [![Build Status](https://secure.travis-ci.org/tkellen/performer.png)](http://travis-ci.org/[tkellen]/[performer])
 > DRY up your forms like never before.
 
-Performer has no external dependencies, it works in Node or the browser (with AMD, or as an inline script) and it ships with full test coverage.  The implementation is simple, elegant and powerful.  *Plugins for integration with [Backbone](http://documentcloud.github.com/backbone/) coming soon.*
+Performer has no external dependencies, works in Node or the browser (with AMD, or as an inline script), ships with full test coverage, and adheres to [semantic versioning](http://semver.org/).  The implementation is simple, elegant and powerful. *Plugins for integration with [Backbone](http://documentcloud.github.com/backbone/) coming soon.*
 
 **v0.0.1**: *this is **alpha** quality software, the API is changing regularly, it is not ready for public use.*
 
@@ -108,7 +106,7 @@ var schema = new Performer.Schema(data);
 ##### Transformers are easy to write:
 ```javascript
 var wrapper = function(input, helpers) {
-  output.write("<div>"+input.read()+"</div>");
+  input.write("<div>"+input.read()+"</div>");
 }
 ```
 

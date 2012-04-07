@@ -23,12 +23,17 @@ define(['performer'],function(Performer) {
       blueprint.add('test', {"tag":"input"});
       expect(blueprint.read('test')).toEqual({"tag":'input'});
     });
-/*
-    it('should allow adding blueprints in bulk', function() {
 
-      expect().toEqual(true);
+    it('should allow adding blueprints in bulk', function() {
+      blueprint.add_many({
+        "one": { "key": "value" },
+        "two": { "key": "value"}
+      });
+
+      expect(blueprint.read("one")).toEqual({"key":"value"});
+      expect(blueprint.read("two")).toEqual({"key":"value"});
     });
-*/
+
     it('should throw when adding a blueprint that already exists', function() {
       var test = function() { blueprint.add('text', {"tag":'input'}); };
       expect(test).toThrow(new Error("Unable to add 'text' blueprint; it already exists."));
@@ -66,15 +71,15 @@ define(['performer'],function(Performer) {
     });
 
     it('should impute nested blueprints', function() {
-      var data = { "blueprint": "address" };
-      var address = {
+      var data = { "blueprint": "address_group" };
+      var address_group = {
         "addr1": { "blueprint": "text" },
         "addr2": { "blueprint": "text" },
         "city": { "blueprint": "text" },
         "state": { "blueprint": "text" },
         "zip": { "blueprint": "text" }
       };
-      blueprint.add('address',address);
+      blueprint.add('address_group',address_group);
 
       var result = {
         "addr1": { "blueprint": "text" },

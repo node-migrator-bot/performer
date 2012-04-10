@@ -23,7 +23,7 @@ define(['performer','spec/helpers/schema'], function(Performer, test_schema) {
         blueprint: blueprint
       };
 
-      form = new Performer.Form(schema, {}, options);
+      form = new Performer.Form(schema, options);
       window.test = form;
     });
 
@@ -32,12 +32,12 @@ define(['performer','spec/helpers/schema'], function(Performer, test_schema) {
     });
 
     it('should throw on instantiation if invalid pipeline is supplied.',function() {
-      var test = function() { new Performer.Form({},{},{pipeline:'notapipline'}); };
+      var test = function() { new Performer.Form({},{pipeline:'notapipline'}); };
       expect(test).toThrow(new Error("Cannot create Form without valid Schema, Blueprint, and Pipeline."));
     });
 
     it('should throw on instantiation if invalid blueprint is supplied.',function() {
-      var test = function() { new Performer.Form({},{},{blueprint:'notablueprint'}); };
+      var test = function() { new Performer.Form({},{blueprint:'notablueprint'}); };
       expect(test).toThrow(new Error("Cannot create Form without valid Schema, Blueprint, and Pipeline."));
     });
 
@@ -48,27 +48,27 @@ define(['performer','spec/helpers/schema'], function(Performer, test_schema) {
 
     it('should build a section of form schema without traversing',function() {
       var result = form.build('account');
-      expect(result).toEqual('<fieldset><div><input type="text" placeholder="placeholder text" id="username" name="username"/></div><div><input type="password" id="password" name="password"/></div></fieldset>');
+      expect(result).toEqual('<fieldset><div><input type="text" placeholder="placeholder text" id="username" name="username"/></div><div><input type="password" id="password" name="password"/></div><div><input type="tag" name="is_admin" value="false"/><input type="checkbox" id="is_admin" name="is_admin"/></div></fieldset>');
     });
 
     it('should allow prefixing IDs during output',function() {
-      var result = form.build('account','prefix_');
-      expect(result).toEqual('<fieldset><div><input type="text" placeholder="placeholder text" id="prefix_username" name="username"/></div><div><input type="password" id="prefix_password" name="password"/></div></fieldset>');
+      var result = form.build('account',{},'prefix_');
+      expect(result).toEqual('<fieldset><div><input type="text" placeholder="placeholder text" id="prefix_username" name="username"/></div><div><input type="password" id="prefix_password" name="password"/></div><div><input type="tag" name="is_admin" value="false"/><input type="checkbox" id="prefix_is_admin" name="is_admin"/></div></fieldset>');
     });
 
     it('should build a section of form schema with traversal',function() {
-      var result = form.build('contact','',true);
+      var result = form.build('contact',{},'',true);
       expect(result).toEqual('<fieldset><div><input type="text" id="first" name="first"/></div><div><input type="text" id="last" name="last"/></div><div><select id="type" name="type"><option value="admin">Administrator</option><option value="user">User</option></select></div><fieldset><div><input type="number" id="age" name="age"/></div><div><input type="date" id="birthdate" name="birthdate"/></div><fieldset><div><input type="text" id="addr1" name="addr1"/></div><div><input type="text" id="addr2" name="addr2"/></div><div><input type="text" id="city" name="city"/></div><div><input type="text" id="state" name="state"/></div><div><input type="text" id="zip" name="zip"/></div></fieldset></fieldset></fieldset>');
     });
 
     it('should build nested blueprints',function() {
-      var result = form.build('contact.details','',true);
+      var result = form.build('contact.details',{},'',true);
       expect(result).toEqual('<fieldset><div><input type="number" id="age" name="age"/></div><div><input type="date" id="birthdate" name="birthdate"/></div><fieldset><div><input type="text" id="addr1" name="addr1"/></div><div><input type="text" id="addr2" name="addr2"/></div><div><input type="text" id="city" name="city"/></div><div><input type="text" id="state" name="state"/></div><div><input type="text" id="zip" name="zip"/></div></fieldset></fieldset>');
     });
 
     it('should build entire form if no arguments are passed', function() {
       var result = form.build();
-      expect(result).toEqual('<fieldset><div><input type="text" id="name" name="name"/></div><fieldset><div><input type="text" placeholder="placeholder text" id="username" name="username"/></div><div><input type="password" id="password" name="password"/></div></fieldset><fieldset><div><input type="text" id="first" name="first"/></div><div><input type="text" id="last" name="last"/></div><div><select id="type" name="type"><option value="admin">Administrator</option><option value="user">User</option></select></div><fieldset><div><input type="number" id="age" name="age"/></div><div><input type="date" id="birthdate" name="birthdate"/></div><fieldset><div><input type="text" id="addr1" name="addr1"/></div><div><input type="text" id="addr2" name="addr2"/></div><div><input type="text" id="city" name="city"/></div><div><input type="text" id="state" name="state"/></div><div><input type="text" id="zip" name="zip"/></div></fieldset></fieldset></fieldset></fieldset>');
+      expect(result).toEqual('<fieldset><div><input type="text" id="name" name="name"/></div><fieldset><div><input type="text" placeholder="placeholder text" id="username" name="username"/></div><div><input type="password" id="password" name="password"/></div><div><input type="tag" name="is_admin" value="false"/><input type="checkbox" id="is_admin" name="is_admin"/></div></fieldset><fieldset><div><input type="text" id="first" name="first"/></div><div><input type="text" id="last" name="last"/></div><div><select id="type" name="type"><option value="admin">Administrator</option><option value="user">User</option></select></div><fieldset><div><input type="number" id="age" name="age"/></div><div><input type="date" id="birthdate" name="birthdate"/></div><fieldset><div><input type="text" id="addr1" name="addr1"/></div><div><input type="text" id="addr2" name="addr2"/></div><div><input type="text" id="city" name="city"/></div><div><input type="text" id="state" name="state"/></div><div><input type="text" id="zip" name="zip"/></div></fieldset></fieldset></fieldset></fieldset>');
     });
 
   });

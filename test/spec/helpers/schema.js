@@ -12,7 +12,8 @@ define(function() {
           "placeholder": "placeholder text"
         }
       },
-      "password": { "blueprint": "password" }
+      "password": { "blueprint": "password" },
+      "is_admin": { "blueprint": "checkbox" }
     },
 
     "contact": {

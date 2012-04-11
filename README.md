@@ -13,7 +13,7 @@ Performer has no external dependencies, works in Node or the browser (with AMD, 
 
 **Transformer:** Functions that can modify or otherwise interact with form tags during generation (e.g. wrap with a div).
 
-**Pipeline:** A set of transformers to apply to a given form element or group to produce marked up HTML.
+**Pipeline:** A set of transformers to apply to a given HTML fragment.
 
 ## Usage
 
@@ -106,7 +106,7 @@ var schema = new Performer.Schema(data);
 ##### Transformers are easy to write:
 ```javascript
 var wrapper = function(input, helpers) {
-  input.write("<div>"+input.read()+"</div>");
+  return input.write("<div>"+input.read()+"</div>");
 }
 ```
 
@@ -119,10 +119,6 @@ Performer ships with these transformers:
     - fieldset, label, ol, ul, li, div, p, span
   * Performer.Transform.Sibling
     - label, legend
-  * Performer.Transform.Hint
-    - before, after
-  * Performer.Transform.Error
-    - before, after
 
 ---
 
@@ -135,7 +131,7 @@ Performer ships with these transformers:
 ```
 
 #### Pipeline Usage Notes:
-Each pipeline has two sets of transformers, one for **tags** and one for **groups**.  When a form (or a section of a form) is generated, each element is passed through the **tag** pipeline.  Groups of processed tags are then passed through the **group** pipeline for final transformation.
+A pipeline is an arbitrary series of transformers which can be applied to any node in your schema during generation.
 
 ---
 

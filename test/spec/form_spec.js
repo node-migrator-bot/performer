@@ -6,10 +6,6 @@ define(['performer','spec/helpers/schema'], function(Performer, test_schema) {
     var form;
     beforeEach(function() {
       var schema = new Performer.Schema(test_schema);
-      var pipeline =  new Performer.Pipeline(
-                            [Performer.Transform.Serialize.standard,Performer.Transform.Wrap.div],
-                            [Performer.Transform.Wrap.fieldset]
-                          );
       var blueprint = Performer.Blueprints.html5();
       blueprint.replace('address',{
         addr1: { blueprint: 'text' },
@@ -19,7 +15,10 @@ define(['performer','spec/helpers/schema'], function(Performer, test_schema) {
         zip: { blueprint: 'text' }
       });
       var options = {
-        pipeline: pipeline,
+        pipelines: {
+          tag: new Performer.Pipeline([Performer.Transform.Serialize.standard,Performer.Transform.Wrap.div]),
+          group: new Performer.Pipeline([Performer.Transform.Wrap.fieldset])
+        },
         blueprint: blueprint
       };
 
@@ -31,14 +30,9 @@ define(['performer','spec/helpers/schema'], function(Performer, test_schema) {
       expect(Performer.Form).toBeDefined();
     });
 
-    it('should throw on instantiation if invalid pipeline is supplied.',function() {
-      var test = function() { new Performer.Form({},{pipeline:'notapipline'}); };
-      expect(test).toThrow(new Error("Cannot create Form without valid Schema, Blueprint, and Pipeline."));
-    });
-
     it('should throw on instantiation if invalid blueprint is supplied.',function() {
       var test = function() { new Performer.Form({},{blueprint:'notablueprint'}); };
-      expect(test).toThrow(new Error("Cannot create Form without valid Schema, Blueprint, and Pipeline."));
+      expect(test).toThrow(new Error("Cannot create Form without valid Schema and Blueprint."));
     });
 
     it('should be able to build a single form element without running a group pipeline',function(){

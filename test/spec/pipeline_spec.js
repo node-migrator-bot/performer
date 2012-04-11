@@ -18,7 +18,7 @@ define(['performer'], function(Performer) {
           className: 'email'
         }
       };
-      var tag = new Performer.Tag('test', 'test', '', data);
+      var tag = new Performer.Tag({id:'test', name:'test', schema: data});
       expect(pipeline.tag(tag)).toEqual('<input type="text" class="email" id="test" name="test"/>');
     });
 

@@ -116,9 +116,9 @@ Explain how transformers can reference attributes in schemas.
 Performer ships with these transformers:
 
   * Performer.Transform.Wrap
-    - fieldset, legend, div, ol, ul, li, div, p
-  * Performer.Transform.Label
-    - wrap, sibling
+    - fieldset, label, ol, ul, li, div, p, span
+  * Performer.Transform.Sibling
+    - label, legend
   * Performer.Transform.Hint
     - before, after
   * Performer.Transform.Error

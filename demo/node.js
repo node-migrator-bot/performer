@@ -55,6 +55,6 @@ var schema = {
 
 };
 
-var form = new Performer.Form(schema, {}, options);
+var form = new Performer.Form(schema, options);
 
 console.log(pd.xml(form.build()));

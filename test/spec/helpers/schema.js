@@ -6,6 +6,7 @@ define(function() {
     "name": { "blueprint": "text" },
 
     "account": {
+      ":legend": "Account Details",
       "username": {
         "blueprint": "text",
         "attributes": {
@@ -17,6 +18,7 @@ define(function() {
     },
 
     "contact": {
+      ":legend": "Contact Information",
       "first": { "blueprint": "text" },
       "last": { "blueprint": "text" },
       "type": {
@@ -28,6 +30,7 @@ define(function() {
       },
 
       "details": {
+        ":legend": "Details",
         "age": { "blueprint": "number" },
         "birthdate": { "blueprint": "date" },
         "address": { "blueprint": "address" }

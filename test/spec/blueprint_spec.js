@@ -64,7 +64,7 @@ define(['performer'],function(Performer) {
       var result = {
         "tag": "input",
         "attributes": {
-          "type": "text"
+          "type": "email"
         }
       };
       expect(blueprint.impute(data)).toEqual(result);

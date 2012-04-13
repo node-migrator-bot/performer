@@ -16,8 +16,8 @@ define(['performer','spec/helpers/schema'], function(Performer, test_schema) {
       });
       var options = {
         pipelines: {
-          tag: new Performer.Pipeline([Performer.Transform.Wrap.div]),
-          set: new Performer.Pipeline([Performer.Transform.Wrap.fieldset])
+          tag: [Performer.Transformers.Wrap.div],
+          set: [Performer.Transformers.Wrap.fieldset]
         },
         blueprint: blueprint
       };

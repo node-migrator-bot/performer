@@ -13,7 +13,7 @@ Performer has no external dependencies, works in Node or the browser (with AMD, 
 
 **Transformer:** Functions that can modify or otherwise interact with form tags during generation (e.g. wrap with a div).
 
-**Pipeline:** A set of transformers to apply to a given HTML fragment.
+**Pipeline:** An array of of transformers to apply to a given HTML fragment.
 
 ## Usage
 
@@ -105,9 +105,9 @@ var schema = new Performer.Schema(data);
 
 ##### Transformers are easy to write:
 ```javascript
-var wrapper = function(input, helpers) {
+var wrapper = new Performer.Transformer(function(input, helpers) {
   return input.write("<div>"+input.read()+"</div>");
-}
+});
 ```
 
 #### Transformer Usage Notes:
@@ -115,9 +115,9 @@ Explain how transformers can reference attributes in schemas.
 
 Performer ships with these transformers:
 
-  * Performer.Transform.Wrap
+  * Performer.Transformers.Wrap
     - fieldset, label, ol, ul, li, div, p, span
-  * Performer.Transform.Sibling
+  * Performer.Transformers.Sibling
     - label, legend
 
 ---
@@ -128,10 +128,23 @@ Performer ships with these transformers:
 ##### Example:
 ```javascript
 // examples here
+var options = {
+  pipelines: {
+    tag: [
+      Performer.Transformers.Sibling.label,
+      Performer.Transformers.Wrap.li
+    ],
+    set: [
+      Performer.Transformers.Wrap.ol,
+      Performer.Transformers.Sibling.legend,
+      Performer.Transformers.Wrap.fieldset
+    ]
+  }
+}
 ```
 
 #### Pipeline Usage Notes:
-A pipeline is an arbitrary series of transformers which can be applied to any node in your schema during generation.
+A pipeline is nothing more than an array of Transformers.
 
 ---
 

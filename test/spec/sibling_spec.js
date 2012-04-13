@@ -1,5 +1,5 @@
 define(['performer'],function(Performer) {
-  describe('Performer.Transform.Sibling', function() {
+  describe('Performer.Transformer.Sibling', function() {
 
     beforeEach(function() {
       var data = {
@@ -13,7 +13,7 @@ define(['performer'],function(Performer) {
     });
 
     it('should be defined', function() {
-      expect(Performer.Transform.Sibling).toBeDefined();
+      expect(Performer.Transformer.Sibling).toBeDefined();
     });
 
   });

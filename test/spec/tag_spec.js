@@ -12,6 +12,5 @@ define(['performer'],function(Performer) {
       expect(tag.read()).toEqual('test');
     });
 
-
   });
 });

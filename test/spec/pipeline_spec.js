@@ -3,7 +3,10 @@ define(['performer'], function(Performer) {
 
     var pipeline;
     beforeEach(function(){
-      pipeline = new Performer.Pipeline([Performer.Transform.Serialize.standard],[]);
+      function wrap(input, helpers) {
+        return input.write('START'+input.read()+'END');
+      }
+      pipeline = new Performer.Pipeline([wrap]);
     });
 
     it('should be defined', function() {
@@ -11,52 +14,10 @@ define(['performer'], function(Performer) {
     });
 
     it('should be able to transform a Tag instance with a pipeline',function() {
-      var data = {
-        tag: 'input',
-        attributes: {
-          type: 'text',
-          className: 'email'
-        }
-      };
-      var tag = new Performer.Tag({id:'test', name:'test', schema: data});
-      expect(pipeline.invoke(tag)).toEqual('<input type="text" class="email" id="test" name="test"/>');
+      var tag = new Performer.Tag();
+      tag.write('tag');
+      expect(pipeline.invoke(tag)).toEqual('STARTtagEND');
     });
-
-    describe("Helpers", function() {
-
-      it('should be defined', function() {
-        expect(Performer.Pipeline.Helpers).toBeDefined();
-      });
-
-      describe("attr_html", function(){
-
-        it('should convert objects into html tag key-value pairs', function() {
-          var data = {
-            type: 'text',
-            className: 'email'
-          };
-          var result = Performer.Pipeline.Helpers.attr_html(data);
-          expect(result).toEqual('type="text" class="email"');
-        });
-
-        it('should ignore empty attributes', function() {
-          var data = {
-            type: 'text',
-            className: 'email',
-            attr1: [],
-            attr2: '',
-            attr3: null
-          };
-          var result = Performer.Pipeline.Helpers.attr_html(data);
-          expect(result).toEqual('type="text" class="email"');
-        });
-
-      });
-
-
-
-    });
-
 
   });
 });

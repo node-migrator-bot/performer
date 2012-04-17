@@ -4,6 +4,7 @@ define(['performer','spec/helpers/schema'], function(Performer, test_schema) {
     var schema;
     beforeEach(function(){
       schema = new Performer.Schema(test_schema);
+      window.dude = schema;
     });
 
     it('should be defined', function() {

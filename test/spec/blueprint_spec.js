@@ -38,12 +38,16 @@ define(['performer'],function(Performer) {
       var test = function() { blueprint.add('text', {"tag":'input'}); };
       expect(test).toThrow(new Error("Unable to add 'text' blueprint; it already exists."));
     });
-/*
-    it('should allow existing blueprints to be modified with new values', function() {
 
-      expect().toEqual(true);
+    it('should allow existing blueprints to be modified with new values', function() {
+      blueprint.modify('select',{
+        attributes: {
+          extra: true
+        }
+      });
+      expect(blueprint.read('select')).toEqual({tag:'select',attributes:{extra:true},options:{}});
     });
-*/
+
     it('should allow existing blueprints to be replaced', function() {
       blueprint.replace('hidden', {"whatever":'test'});
       expect(blueprint.read('hidden')).toEqual({"whatever":'test'});
@@ -59,7 +63,7 @@ define(['performer'],function(Performer) {
       expect(test).toThrow(new Error("Unable to locate 'notablueprint' blueprint to modify."));
     });
 
-    it('should impute blueprints', function() {
+    it('should impute blueprints with outside data', function() {
       var data = { "blueprint": "email" };
       var result = {
         "tag": "input",

@@ -1,16 +1,25 @@
 define(['performer'],function(Performer) {
   describe('Performer.Serializers', function() {
 
+    var blueprint = Performer.Blueprints.html5();
+    var serializer = Performer.Serializers.standard;
+
     it('should be defined', function() {
       expect(Performer.Serializers).toBeDefined();
     });
 
+    it('should not serialize values for tag names held in VALUE_NOT_IN_TAG',function() {
+      var tag = new Performer.Tag({
+        serializer: serializer,
+        schema: blueprint.read('select'),
+        value: 'hello'
+      });
+      expect(tag.read()).toEqual("<select ></select>");
+    });
+
     describe('Performer.Serializers.standard', function() {
 
-      var blueprint = Performer.Blueprints.html5();
-      var serializer = Performer.Serializers.standard;
-
-      it('should should serialize the blueprint "text"', function() {
+      it('should should serialize the html5 blueprint "text"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('text')
@@ -18,7 +27,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<input type="text"/>');
       });
 
-      it('should should serialize the blueprint "number"', function() {
+      it('should should serialize the html5 blueprint "number"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('number')
@@ -26,7 +35,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<input type="number"/>');
       });
 
-      it('should should serialize the blueprint "email"', function() {
+      it('should should serialize the html5 blueprint "email"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('email')
@@ -34,7 +43,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<input type="email"/>');
       });
 
-      it('should should serialize the blueprint "url"', function() {
+      it('should should serialize the html5 blueprint "url"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('url')
@@ -42,7 +51,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<input type="url"/>');
       });
 
-      it('should should serialize the blueprint "date"', function() {
+      it('should should serialize the html5 blueprint "date"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('date')
@@ -50,7 +59,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<input type="date"/>');
       });
 
-      it('should should serialize the blueprint "password"', function() {
+      it('should should serialize the html5 blueprint "password"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('password')
@@ -58,7 +67,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<input type="password"/>');
       });
 
-      it('should should serialize the blueprint "select"', function() {
+      it('should should serialize the html5 blueprint "select"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('select')
@@ -66,7 +75,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<select ></select>');
       });
 
-      it('should should serialize the blueprint "select" with options', function() {
+      it('should should serialize the html5 blueprint "select" with options', function() {
         var schema = {"blueprint":"select","options":{"value":"test"}};
         var tag = new Performer.Tag({
           serializer: serializer,
@@ -75,7 +84,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<select ><option value="value">test</option></select>');
       });
 
-      it('should should serialize the blueprint "textarea"', function() {
+      it('should should serialize the html5 blueprint "textarea"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('textarea')
@@ -83,7 +92,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<textarea ></textarea>');
       });
 
-      it('should should serialize the blueprint "hidden"', function() {
+      it('should should serialize the html5 blueprint "hidden"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('hidden')
@@ -91,7 +100,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<input type="hidden"/>');
       });
 
-      it('should should serialize the blueprint "file"', function() {
+      it('should should serialize the html5 blueprint "file"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('file')
@@ -99,7 +108,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<input type="file"/>');
       });
 
-      it('should should serialize the blueprint "checkbox"', function() {
+      it('should should serialize the html5 blueprint "checkbox"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('checkbox')
@@ -107,7 +116,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<input type="checkbox"/>');
       });
 
-      it('should should serialize the blueprint "radio"', function() {
+      it('should should serialize the html5 blueprint "radio"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('radio')
@@ -115,7 +124,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<input type="radio"/>');
       });
 
-      it('should should serialize the blueprint "button"', function() {
+      it('should should serialize the html5 blueprint "button"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('button')
@@ -123,7 +132,7 @@ define(['performer'],function(Performer) {
         expect(tag.read()).toEqual('<input type="button"/>');
       });
 
-      it('should should serialize the blueprint "submit"', function() {
+      it('should should serialize the html5 blueprint "submit"', function() {
         var tag = new Performer.Tag({
           serializer: serializer,
           schema:blueprint.read('submit')

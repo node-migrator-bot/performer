@@ -23,7 +23,6 @@ define(['performer','spec/helpers/schema'], function(Performer, test_schema) {
       };
 
       form = new Performer.Form(schema, options);
-      window.test = form;
     });
 
     it('should be defined', function() {

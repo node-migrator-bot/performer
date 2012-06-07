@@ -1,70 +1,71 @@
 define(['performer'],function(Performer) {
-  describe('Performer.Transformers.Wrap', function() {
 
-    var tag;
-    beforeEach(function() {
-      tag = new Performer.Tag();
-    });
+  var expect = buster.assertions.expect;
+  buster.testCase("Performer.Transformers.Wrap", {
 
-    it('should be defined', function() {
+    "setUp": function() {
+      this.tag = new Performer.Tag();
+    },
+
+    "should be defined": function() {
       expect(Performer.Transformers.Wrap).toBeDefined();
-    });
+    },
 
-    describe('fieldset', function() {
-      it('should wrap input.read() with <fieldset></fieldset> and pass the result into input.write()', function() {
+    "fieldset": {
+      "should wrap input.read() with <fieldset></fieldset> and pass the result into input.write()": function() {
         var transform = Performer.Transformers.Wrap.fieldset;
-        expect(transform.invoke(tag)).toEqual("<fieldset></fieldset>");
-      });
-    });
+        expect(transform.invoke(this.tag)).toEqual("<fieldset></fieldset>");
+      }
+    },
 
-    describe('label', function() {
-      it('should wrap input.read() with <label></label> and pass the result into input.write()', function() {
+    "label": {
+      "should wrap input.read() with <label></label> and pass the result into input.write()": function() {
         var transform = Performer.Transformers.Wrap.label;
-        expect(transform.invoke(tag)).toEqual("<label></label>");
-      });
-    });
+        expect(transform.invoke(this.tag)).toEqual("<label></label>");
+      }
+    },
 
-    describe('ul', function() {
-      it('should wrap input.read() with <ul></ul> and pass the result into input.write()', function() {
+    "ul": {
+      "should wrap input.read() with <ul></ul> and pass the result into input.write()": function() {
         var transform = Performer.Transformers.Wrap.ul;
-        expect(transform.invoke(tag)).toEqual("<ul></ul>");
-      });
-    });
+        expect(transform.invoke(this.tag)).toEqual("<ul></ul>");
+      }
+    },
 
-    describe('ol', function() {
-      it('should wrap input.read() with <ol></ol> and pass the result into input.write()', function() {
+    "ol": {
+      "should wrap input.read() with <ol></ol> and pass the result into input.write()": function() {
         var transform = Performer.Transformers.Wrap.ol;
-        expect(transform.invoke(tag)).toEqual("<ol></ol>");
-      });
-    });
+        expect(transform.invoke(this.tag)).toEqual("<ol></ol>");
+      }
+    },
 
-    describe('li', function() {
-      it('should wrap input.read() with <li></li> and pass the result into input.write()', function() {
+    "li": {
+      "should wrap input.read() with <li></li> and pass the result into input.write()": function() {
         var transform = Performer.Transformers.Wrap.li;
-        expect(transform.invoke(tag)).toEqual("<li></li>");
-      });
-    });
+        expect(transform.invoke(this.tag)).toEqual("<li></li>");
+      }
+    },
 
-    describe('div', function() {
-      it('should wrap input.read() with <div></div> and pass the result into input.write()', function() {
+    "div": {
+      "should wrap input.read() with <div></div> and pass the result into input.write()": function() {
         var transform = Performer.Transformers.Wrap.div;
-        expect(transform.invoke(tag)).toEqual("<div></div>");
-      });
-    });
+        expect(transform.invoke(this.tag)).toEqual("<div></div>");
+      }
+    },
 
-    describe('p', function() {
-      it('should wrap input.read() with <p></p> and pass the result into input.write()', function() {
+    "p": {
+      "should wrap input.read() with <p></p> and pass the result into input.write()": function() {
         var transform = Performer.Transformers.Wrap.p;
-        expect(transform.invoke(tag)).toEqual("<p></p>");
-      });
-    });
+        expect(transform.invoke(this.tag)).toEqual("<p></p>");
+      }
+    },
 
-    describe('span', function() {
-      it('should wrap input.read() with <span></span> and pass the result into input.write()', function() {
+    "span": {
+      "should wrap input.read() with <span></span> and pass the result into input.write()": function() {
         var transform = Performer.Transformers.Wrap.span;
-        expect(transform.invoke(tag)).toEqual("<span></span>");
-      });
-    });
+        expect(transform.invoke(this.tag)).toEqual("<span></span>");
+      }
+    }
 
   });
 });

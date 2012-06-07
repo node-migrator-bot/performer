@@ -1,9 +1,11 @@
 define(['performer'], function(Performer) {
-  describe('Performer', function() {
 
-    it('should be defined', function() {
+  var expect = buster.assertions.expect;
+  buster.testCase("Performer", {
+
+    "should be defined": function() {
       expect(Performer).toBeDefined();
-    });
+    }
 
   });
 });

@@ -28,12 +28,13 @@
 
   },
   "scripts": {
-    "test": "phantomjs test/runner-phantom.js http://localhost:8000/test/runner.html"
+    "test": "buster-server &;sleep 4;phantomjs /usr/local/lib/node_modules/buster/script/phantom.js &"
   },
   "devDependencies": {
     "system": "*",
     "requirejs": "*",
-    "servedir": "*",
-    "pretty-data": "*"
+    "buster": "*",
+    "buster-server": "*",
+    "buster-amd": "*"
   }
 }

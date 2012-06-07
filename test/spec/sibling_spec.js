@@ -1,7 +1,9 @@
 define(['performer'],function(Performer) {
-  describe('Performer.Transformer.Sibling', function() {
 
-    beforeEach(function() {
+  var expect = buster.assertions.expect;
+  buster.testCase("Performer.Transformers.Sibling", {
+
+    "setUp": function() {
       var data = {
         tag: 'input',
         attributes: {
@@ -9,12 +11,12 @@ define(['performer'],function(Performer) {
           className: 'test'
         }
       };
-      tag = new Performer.Tag('email', '', data);
-    });
+      this.tag = new Performer.Tag('email', '', data);
+    },
 
-    it('should be defined', function() {
-      expect(Performer.Transformer.Sibling).toBeDefined();
-    });
+    "should be defined": function() {
+      expect(Performer.Transformers.Sibling).toBeDefined();
+    }
 
   });
 });

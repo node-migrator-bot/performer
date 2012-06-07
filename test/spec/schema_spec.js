@@ -1,31 +1,31 @@
-define(['performer','spec/helpers/schema'], function(Performer, test_schema) {
-  describe('Performer.Schema', function() {
+define(['performer','helpers/schema'], function(Performer, test_schema) {
 
-    var schema;
-    beforeEach(function(){
-      schema = new Performer.Schema(test_schema);
-      window.dude = schema;
-    });
+  var expect = buster.assertions.expect;
+  buster.testCase("Performer.Schema", {
 
-    it('should be defined', function() {
+    "setUp": function(){
+      this.schema = new Performer.Schema(test_schema);
+    },
+
+    "should be defined": function() {
       expect(Performer.Schema).toBeDefined();
-    });
+    },
 
-    it('read should return the entire schema when no arguments are passed', function() {
-      var value = schema.read();
+    "read should return the entire schema when no arguments are passed": function() {
+      var value = this.schema.read();
       expect(value).toEqual(test_schema);
-    });
+    },
 
-    it('read should traverse the schema with dot notation', function() {
-      var value = schema.read('contact.details');
+    "read should traverse the schema with dot notation": function() {
+      var value = this.schema.read('contact.details');
       expect(value).toEqual(test_schema['contact']['details']);
-    });
+    },
 
-    it('should return a copy of the object requested, not the source', function() {
-      var value = schema.read();
+    "should return a copy of the object requested, not the source": function() {
+      var value = this.schema.read();
       value = {};
-      expect(test_schema).toNotEqual(value);
-    });
+      expect(test_schema).not.toEqual(value);
+    }
 
   });
 });

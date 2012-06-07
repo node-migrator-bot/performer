@@ -1,69 +1,74 @@
 define(['performer'],function(Performer) {
-  describe('Performer.Blueprint', function() {
 
-    var blueprint;
-    beforeEach(function() {
-      blueprint = Performer.Blueprints.html5();
-    });
+  var expect = buster.assertions.expect;
+  buster.testCase("Performer.Blueprint", {
 
-    it('should be defined', function() {
-      expect(Performer.Blueprint).toBeDefined();
-    });
+    "setUp": function() {
+      this.blueprint = Performer.Blueprints.html5();
+    },
 
-    it('should look up blueprints by name', function() {
-      expect(blueprint.read('text')).toEqual({"tag":"input", attributes:{"type":"text"}});
-    });
+    "should be defined": function() {
+      expect(Performer).toBeDefined();
+    },
 
-    it('should throw an error if no blueprint is found', function() {
-      var test = function() { blueprint.read('test'); };
-      expect(test).toThrow(new Error("Unable to locate 'test' blueprint."));
-    });
+    "should look up blueprints by name": function() {
+      expect(this.blueprint.read('text')).toEqual({"tag":"input", attributes:{"type":"text"}});
+    },
 
-    it('should allow adding blueprints', function() {
-      blueprint.add('test', {"tag":"input"});
-      expect(blueprint.read('test')).toEqual({"tag":'input'});
-    });
+    "//should throw an error if no blueprint is found": function() {
+      var self = this;
+      var test = function() { self.blueprint.read('test'); };
+      expect(test).toThrow(new Error("Unable to locate 'test' this.blueprint."));
+    },
 
-    it('should allow adding blueprints in bulk', function() {
-      blueprint.add_many({
+    "should allow adding blueprints": function() {
+      this.blueprint.add('test', {"tag":"input"});
+      expect(this.blueprint.read('test')).toEqual({"tag":'input'});
+    },
+
+    "should allow adding blueprints in bulk": function() {
+      this.blueprint.add_many({
         "one": { "key": "value" },
         "two": { "key": "value"}
       });
 
-      expect(blueprint.read("one")).toEqual({"key":"value"});
-      expect(blueprint.read("two")).toEqual({"key":"value"});
-    });
+      expect(this.blueprint.read("one")).toEqual({"key":"value"});
+      expect(this.blueprint.read("two")).toEqual({"key":"value"});
+    },
 
-    it('should throw when adding a blueprint that already exists', function() {
-      var test = function() { blueprint.add('text', {"tag":'input'}); };
+    "//should throw when adding a blueprint that already exists": function() {
+      var self = this;
+      var test = function() { self.blueprint.add('text', {"tag":'input'}); };
       expect(test).toThrow(new Error("Unable to add 'text' blueprint; it already exists."));
-    });
+    },
 
-    it('should allow existing blueprints to be modified with new values', function() {
-      blueprint.modify('select',{
+    "should allow existing blueprints to be modified with new values": function() {
+      this.blueprint.modify('select',{
         attributes: {
           extra: true
         }
       });
-      expect(blueprint.read('select')).toEqual({tag:'select',attributes:{extra:true},options:{}});
-    });
+      expect(this.blueprint.read('select')).toEqual({tag:'select',attributes:{extra:true},options:{}});
+    },
 
-    it('should allow existing blueprints to be replaced', function() {
-      blueprint.replace('hidden', {"whatever":'test'});
-      expect(blueprint.read('hidden')).toEqual({"whatever":'test'});
-    });
+    "should allow existing blueprints to be replaced": function() {
+      this.blueprint.replace('hidden', {"whatever":'test'});
+      expect(this.blueprint.read('hidden')).toEqual({"whatever":'test'});
+    },
 
-    it('should allow removing a blueprint', function() {
-      var test = function() { blueprint.remove('hidden'); blueprint.read('hidden'); };
+    "//should allow removing a blueprint": function() {
+      var self = this;
+      var test = function() { self.blueprint.remove('hidden'); self.blueprint.read('hidden'); };
       expect(test).toThrow(new Error("Unable to locate 'hidden' blueprint."));
-    });
+    },
 
-    it('should throw when extending a blueprint that doesn\'t exist', function() {
-      var test = function() { blueprint.modify('notablueprint', {"tag":"new"}); };
+    "//should throw when extending a blueprint that doesn\'t exist": function() {
+      var self = this;
+      var test = function() { self.blueprint.modify('notablueprint', {"tag":"new"}); };
       expect(test).toThrow(new Error("Unable to locate 'notablueprint' blueprint to modify."));
-    });
+    },
 
-    it('should impute blueprints with outside data', function() {
+    "should impute blueprints with outside data": function() {
       var data = { "blueprint": "email" };
       var result = {
         "tag": "input",
@@ -71,10 +76,10 @@ define(['performer'],function(Performer) {
           "type": "email"
         }
       };
-      expect(blueprint.impute(data)).toEqual(result);
-    });
+      expect(this.blueprint.impute(data)).toEqual(result);
+    },
 
-    it('should impute nested blueprints', function() {
+    "should impute nested blueprints": function() {
       var data = { "blueprint": "address_group" };
       var address_group = {
         "addr1": { "blueprint": "text" },
@@ -83,7 +88,7 @@ define(['performer'],function(Performer) {
         "state": { "blueprint": "text" },
         "zip": { "blueprint": "text" }
       };
-      blueprint.add('address_group',address_group);
+      this.blueprint.add('address_group',address_group);
 
       var result = {
         "addr1": { "blueprint": "text" },
@@ -93,8 +98,9 @@ define(['performer'],function(Performer) {
         "zip": { "blueprint": "text" }
       };
 
-      expect(blueprint.impute(data)).toEqual(result);
-    });
+      expect(this.blueprint.impute(data)).toEqual(result);
+    }
 
   });
+
 });

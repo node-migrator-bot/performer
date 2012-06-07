@@ -1,23 +1,24 @@
 define(['performer'], function(Performer) {
 
-  describe("Helpers", function() {
+  var expect = buster.assertions.expect;
+  buster.testCase("Helpers", {
 
-    it('should be defined', function() {
+    "should be defined": function() {
       expect(Performer.Helpers).toBeDefined();
-    });
+    },
 
-    describe("attr_html", function(){
+    "attr_html": {
 
-      it('should convert objects into html tag key-value pairs', function() {
+      "should convert objects into html tag key-value pairs": function() {
         var data = {
           type: 'text',
           className: 'email'
         };
         var result = Performer.Helpers.attr_html(data);
         expect(result).toEqual('type="text" class="email"');
-      });
+      },
 
-      it('should ignore value attribute when flagged to', function() {
+      "should ignore value attribute when flagged to": function() {
         var data = {
           type: 'text',
           className: 'email',
@@ -25,9 +26,9 @@ define(['performer'], function(Performer) {
         };
         var result = Performer.Helpers.attr_html(data,true);
         expect(result).toEqual('type="text" class="email"');
-      });
+      },
 
-      it('should ignore empty attributes', function() {
+      "should ignore empty attributes": function() {
         var data = {
           type: 'text',
           className: 'email',
@@ -37,9 +38,9 @@ define(['performer'], function(Performer) {
         };
         var result = Performer.Helpers.attr_html(data);
         expect(result).toEqual('type="text" class="email"');
-      });
+      }
 
-    });
+    }
   });
 
 });

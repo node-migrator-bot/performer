@@ -71,7 +71,7 @@ var requirejs, require, define;
         vm = require('vm');
         path = require('path');
         //In Node 0.7+ existsSync is on fs.
-        existsForNode = fs.existsSync || path.existsSync;
+        existsForNode = fs.existsSync || fs.existsSync;
 
         nodeRequire = require;
         nodeDefine = define;
@@ -2150,7 +2150,7 @@ var requirejs, require, define;
         path = nodeReq('path'),
         vm = nodeReq('vm'),
         //In Node 0.7+ existsSync is on fs.
-        exists = fs.existsSync || path.existsSync;
+        exists = fs.existsSync || fs.existsSync;
 
     //Supply an implementation that allows synchronous get of a module.
     req.get = function (context, moduleName, relModuleMap) {
